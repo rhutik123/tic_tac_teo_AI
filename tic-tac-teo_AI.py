@@ -22,7 +22,7 @@ def printBoard(board):
     print('   |   |')
 
 def isWinner(bo, le):
-    return (bo[1] == le and bo[2] == le and board[3] == le) or (bo[4] == le and bo[5] == le and board[6] == le) or (bo[7] == le and bo[8] == le and board[9] == le) or (bo[1] == le and bo[4] == le and board[7] == le) or (bo[2] == le and bo[5] == le and board[8] == le) or (bo[3] == le and bo[6] == le and board[9] == le) or (bo[1] == le and bo[5] == le and board[9] == le) or (bo[3] == le and bo[5] == le and board[7] == le)
+    return ((bo[7] == le and bo[8] == le and bo[9] == le) or (bo[4] == le and bo[5] == le and bo[6] == le) or (bo[1] == le and bo[2] == le and bo[3] == le) or (bo[7] == le and bo[4] == le and bo[1] == le) or (bo[8] == le and bo[5] == le and bo[2] == le) or (bo[9] == le and bo[6] == le and bo[3] == le) or (bo[7] == le and bo[5] == le and bo[3] == le) or (bo[9] == le and bo[5] == le and bo[1] == le))
 
 def playerMove():
     run = True
@@ -45,7 +45,7 @@ def playerMove():
 def compMove():
     possibleMoves = [x for x, letter in enumerate(board) if letter == ' ' and x != 0]
     move = 0
-
+    print(possibleMoves)
     for let in ['O', 'X']:
         for i in possibleMoves:
             boardCopy = board[:]
@@ -69,12 +69,11 @@ def compMove():
         
     edgesOpen = []
     for i in possibleMoves:
-        if i in [1,3,7,9]:
+        if i in [2,4,6,8]:
             edgesOpen.append(i)
     
     if len(edgesOpen) > 0:
         move = selectRandom(edgesOpen)
-        return move
     return move
 
 def selectRandom(li):
@@ -112,7 +111,7 @@ def main():
                 print("Computer placed an 'O' in position ", move)
                 printBoard(board)
         else:
-            print("WoW, Great job you won this game !!!")
+            print("WoW, Good job you won this game !!!")
             break
     if isBoardFull(board):
         print("It's tie game !")
